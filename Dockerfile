@@ -2,10 +2,19 @@ FROM ansiblesemaphore/semaphore
 MAINTAINER S.Koulouzis
 USER root
 
-RUN echo "http://dl-3.alpinelinux.org/alpine/latest-stable/main" > /etc/apk/repositories && \
-    echo "http://dl-3.alpinelinux.org/alpine/latest-stable/communit" >> /etc/apk/repositories
+RUN apk update  && apk add --upgrade apk-tools
+RUN apk upgrade --available
 
-RUN apk add --upgrade apk-tools && apk upgrade --available
-RUN apk update && apk upgrade
+
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.8/main" > /etc/apk/repositories && echo "http://dl-cdn.alpinelinux.org/alpine/v3.8/community" >> /etc/apk/repositories
+
+RUN apk update  && apk add --upgrade apk-tools
+RUN apk upgrade --available
+
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.9/main" > /etc/apk/repositories && echo "http://dl-cdn.alpinelinux.org/alpine/v3.9/community" >> /etc/apk/repositories
+
+RUN apk update  && apk add --upgrade apk-tools
+RUN apk upgrade --available
 
 USER semaphore
+
